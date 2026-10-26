@@ -1,0 +1,52 @@
+Vagrant.configure("2") do |config|
+
+  # 1. Operating system image — Debian 12
+  config.vm.box = "bento/debian-12"
+
+  # 2. Hostname inside the virtual machine
+  config.vm.hostname = "web-lab"
+
+  # 3. Virtual machine settings in VirtualBox
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "vagrant-web-lab"
+    vb.memory = 1024
+    vb.cpus = 1
+  end
+
+  # 4. Private network with a static IP address
+  config.vm.network "private_network",
+    ip: "192.168.56.10"
+
+  # 5. Forwarding host port 8080 to guest port 80
+  config.vm.network "forwarded_port",
+    guest: 80,
+    host: 8080,
+    host_ip: "127.0.0.1"
+
+  # 6. Web server installation and configuration
+  config.vm.provision "shell", inline: <<~SHELL
+    set -e
+    export DEBIAN_FRONTEND=noninteractive
+
+    apt-get update
+    apt-get install -y nginx
+
+    cat > /var/www/html/index.html <<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Web Server</title>
+</head>
+<body>
+  <h1>Hello! This is the page of Catherine Bogush</h1>
+  <p>The Nginx web server is running inside a Vagrant virtual machine.</p>
+  <p>Hostname: web-lab</p>
+</body>
+</html>
+HTML
+
+    systemctl enable --now nginx
+  SHELL
+
+end
