@@ -1,0 +1,11 @@
+host,cores,memory_mb,filesystem,size,used,available,used_percent,mountpoint
+LinuxBook,2,7690,udev,3.8G,0,3.8G,0,/dev
+LinuxBook,2,7690,tmpfs,770M,1.5M,768M,1,/run
+LinuxBook,2,7690,/dev/sda2,211G,8.9G,191G,5,/
+LinuxBook,2,7690,tmpfs,3.8G,0,3.8G,0,/dev/shm
+LinuxBook,2,7690,tmpfs,5.0M,0,5.0M,0,/run/lock
+LinuxBook,2,7690,tmpfs,3.8G,40K,3.8G,1,/tmp
+LinuxBook,2,7690,/dev/sda1,975M,9.1M,966M,1,/boot/efi
+LinuxBook,2,7690,tmpfs,1.0M,0,1.0M,0,/run/credentials/getty@tty1.service
+LinuxBook,2,7690,tmpfs,770M,36K,769M,1,/run/user/1001
+LinuxBook,2,7690,tmpfs,1.0M,0,1.0M,0,/run/credentials/systemd-journald.service
